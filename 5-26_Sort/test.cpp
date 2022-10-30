@@ -70,23 +70,23 @@ void TestCountSort()
 	PrintArr(a, sizeof(a) / sizeof(int));
 }
 
-int main()
-{
-	//InsertSortTest();
-	//TestShellSort();
-	//TestSelectSort();
-
-	//TestHeapSort();
-
-
-	//TestBulleSort();
-
-	//TestQuickSort();
-
-	//TestMergeSort();
-
-	TestCountSort();
-
-
-	return 0;
-}
+//int main()
+//{
+//	//InsertSortTest();
+//	//TestShellSort();
+//	//TestSelectSort();
+//
+//	//TestHeapSort();
+//
+//
+//	//TestBulleSort();
+//
+//	//TestQuickSort();
+//
+//	//TestMergeSort();
+//
+//	TestCountSort();
+//
+//
+//	return 0;
+//}
