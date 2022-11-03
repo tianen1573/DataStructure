@@ -132,18 +132,71 @@ namespace myAVL
 				{
 					if (parent->_bf == 2 && cur->_bf == 1)//右子树的右子树
 					{
+						parent->_bf = parent->_right->_bf = 0;//更新旋转后的平衡因子
 						RotateL(parent);
 					}
 					else if ((parent->_bf == -2 && cur->_bf == -1))//左子树的左子树
 					{
+						parent->_bf = parent->_left->_bf = 0;//更新旋转后的平衡因子
 						RotateR(parent);
 					}
 					else if (parent->_bf == -2 && cur->_bf == 1)//左子树的右子树
 					{
+						int bf = parent->_left->_right->_bf;
+
+						parent->_left->_right->_bf = 0;//旋转后的'parent'为0
+
+						// 更新平衡因子
+						if (bf == 0)//subLR为叶子节点
+						{
+							parent->_bf = 0;
+							parent->_left->_bf = 0;
+						}
+						else if (bf == 1)
+						{
+							parent->_bf = 0;
+							parent->_left->_bf = -1;
+						}
+						else if (bf == -1)
+						{
+							parent->_bf = 1;
+							parent->_left->_bf = 0;
+						}
+						else
+						{
+							assert(false);
+						}
+
 						RotateLR(parent);
 					}
 					else if (parent->_bf == 2 && cur->_bf == -1)//右子树的左子树
 					{
+
+						int bf = parent->_right->_left->_bf;
+
+						parent->_right->_left->_bf = 0;//旋转后的'parent'为0
+
+						// 更新平衡因子
+						if (bf == 0)//subRL为叶子节点
+						{
+							parent->_bf = 0;
+							parent->_right->_bf = 0;
+						}
+						else if (bf == 1)
+						{
+							parent->_right->_bf = 0;
+							parent->_bf = -1;
+						}
+						else if (bf == -1)
+						{
+							parent->_right->_bf = 1;
+							parent->_bf = 0;
+						}
+						else
+						{
+							assert(false);
+						}
+
 						RotateRL(parent);
 					}
 					else
@@ -310,8 +363,8 @@ namespace myAVL
 				}
 			}
 
-			parent->_bf = 0;
-			subR->_bf = 0;
+			/*parent->_bf = 0;
+			subR->_bf = 0;*/
 			
 		}
 		void RotateR(Node* parent)
@@ -347,74 +400,74 @@ namespace myAVL
 				}
 			}
 
-			parent->_bf = 0;
-			subL->_bf = 0;
+			/*parent->_bf = 0;
+			subL->_bf = 0;*/
 
 		}
 		void RotateLR(Node* parent)
 		{
 			Node* subL = parent->_left;
 			Node* subLR = subL->_right;
-			int bf = subLR->_bf;
+			//int bf = subLR->_bf;
 
 			RotateL(subL);
 			RotateR(parent);
 
-			subLR->_bf = 0;//新的根节点
+			//subLR->_bf = 0;//新的根节点
 
-			// 更新平衡因子
-			if (bf == 0)//subLR为叶子节点
-			{
-				parent->_bf = 0;
-				subL->_bf = 0;
-			}
-			else if (bf == 1)
-			{
-				parent->_bf = 0;
-				subL->_bf = -1;
-			}
-			else if (bf == -1)
-			{
-				parent->_bf = 1;
-				subL->_bf = 0;
-			}
-			else
-			{
-				assert(false);
-			}
+			//// 更新平衡因子
+			//if (bf == 0)//subLR为叶子节点
+			//{
+			//	parent->_bf = 0;
+			//	subL->_bf = 0;
+			//}
+			//else if (bf == 1)
+			//{
+			//	parent->_bf = 0;
+			//	subL->_bf = -1;
+			//}
+			//else if (bf == -1)
+			//{
+			//	parent->_bf = 1;
+			//	subL->_bf = 0;
+			//}
+			//else
+			//{
+			//	assert(false);
+			//}
 		}
 		void RotateRL(Node* parent)
 		{
 			Node* subR = parent->_right;
 			Node* subRL = subR->_left;
 
-			int bf = subRL->_bf;
+			//int bf = subRL->_bf;
 
 			RotateR(subR);
 			RotateL(parent);
 
-			subRL->_bf = 0;//新的parent
-
-			// 更新平衡因子
-			if (bf == 0)//subRL为叶子节点
-			{
-			parent->_bf = 0;
-			subR->_bf = 0;
-			}
-			else if (bf == 1)
-			{
-				subR->_bf = 0;
-				parent->_bf = -1;
-			}
-			else if (bf == -1)
-			{
-				subR->_bf = 1;
-				parent->_bf = 0;
-			}
-			else
-			{
-				assert(false);
-			}
+			//subRL->_bf = 0;//新的parent
+			//
+			//// 更新平衡因子
+			//if (bf == 0)//subRL为叶子节点
+			//{
+			//parent->_bf = 0;
+			//subR->_bf = 0;
+			//}
+			//else if (bf == 1)
+			//{
+			//	subR->_bf = 0;
+			//	parent->_bf = -1;
+			//}
+			//else if (bf == -1)
+			//{
+			//	subR->_bf = 1;
+			//	parent->_bf = 0;
+			//}
+			//else
+			//{
+			//	assert(false);
+			//}
 
 		}
 

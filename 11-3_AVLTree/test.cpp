@@ -5,9 +5,9 @@
 int main()
 {
 
-	//myAVL::TestAVLTree1();
+	myAVL::TestAVLTree1();
 
-	myAVL::TestAVLTree2();
+	//myAVL::TestAVLTree2();
 
 
 	return 0;
