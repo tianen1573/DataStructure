@@ -190,13 +190,13 @@ namespace myHash_bucket
 			else if(prev == nullptr)//为第一个
 			{
 				_tab[hashi] = cur->_next;
-				free(cur);
+				delete cur;
 				cur = nullptr;
 			}
 			else
 			{
 				prev->_next = cur->_next;
-				free(cur);
+				delete cur;
 				cur = nullptr;
 			}
 
